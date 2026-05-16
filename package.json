@@ -1,0 +1,48 @@
+{
+  "name": "@skillfm/mcp",
+  "version": "0.1.0",
+  "mcpName": "io.github.ericm1018/skillfm",
+  "description": "SkillFM Beacon MCP: AI health checkups, token usage, LLM cost optimization, BYOK monitoring, and safe agent cleanup.",
+  "type": "module",
+  "bin": {
+    "skillfm-mcp": "./bin/skillfm-mcp.js"
+  },
+  "files": [
+    "bin",
+    "README.md",
+    "server.json"
+  ],
+  "scripts": {
+    "smoke": "node ./bin/skillfm-mcp.js --help"
+  },
+  "keywords": [
+    "skillfm",
+    "mcp",
+    "model-context-protocol",
+    "ai-agent",
+    "ai-health",
+    "token-usage",
+    "llm-cost",
+    "cost-optimizer",
+    "agent-monitoring",
+    "byok",
+    "local-vault",
+    "claude-code",
+    "cursor",
+    "cline",
+    "claude-desktop",
+    "vscode-copilot"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ericm1018/skillfm-mcp.git"
+  },
+  "homepage": "https://skillfm.ai",
+  "bugs": {
+    "url": "https://github.com/ericm1018/skillfm-mcp/issues"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">=20"
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.ericm1018/skillfm",
+  "title": "SkillFM Beacon",
+  "description": "AI health checkups, token usage, LLM cost optimization, BYOK provider monitoring, local vault setup, and safe cleanup audits for MCP-capable agents.",
+  "websiteUrl": "https://skillfm.ai",
+  "repository": {
+    "url": "https://github.com/ericm1018/skillfm-mcp",
+    "source": "github"
+  },
+  "version": "0.1.0",
+  "packages": [
+    {
+      "registryType": "npm",
+      "registryBaseUrl": "https://registry.npmjs.org",
+      "identifier": "@skillfm/mcp",
+      "version": "0.1.0",
+      "transport": {
+        "type": "stdio"
+      }
+    }
+  ],
+  "_meta": {
+    "io.modelcontextprotocol.registry/publisher-provided": {
+      "keywords": [
+        "AI health checkup",
+        "token usage",
+        "LLM spend",
+        "AI cost optimizer",
+        "BYOK",
+        "local vault",
+        "agent monitoring",
+        "slow agent cleanup",
+        "context cleanup",
+        "Claude Code",
+        "Cursor",
+        "Cline",
+        "Claude Desktop",
+        "VS Code Copilot"
+      ]
+    }
+  }
+}
