@@ -63,10 +63,10 @@ jobs:
         if: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run }}
         run: npm publish --dry-run --access public
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN_MCP || secrets.NPM_TOKEN }}
 
       - name: Publish
         if: ${{ github.event_name != 'workflow_dispatch' || !inputs.dry_run }}
         run: npm publish --access public
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN_MCP || secrets.NPM_TOKEN }}
