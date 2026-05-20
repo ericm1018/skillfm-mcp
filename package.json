@@ -5,11 +5,17 @@
   "description": "SkillFM Beacon MCP: AI health checkups, token usage, LLM cost optimization, BYOK monitoring, and safe agent cleanup.",
   "type": "module",
   "bin": {
-    "skillfm-mcp": "./bin/skillfm-mcp.js"
+    "skillfm-mcp": "bin/skillfm-mcp.js"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "files": [
     "bin",
+    "docs",
     "README.md",
+    "PRIVACY.md",
+    "SECURITY.md",
     "server.json"
   ],
   "scripts": {

@@ -6,10 +6,10 @@ SkillFM Beacon gives Claude Code, Cursor, Cline, Claude Desktop, VS Code Copilot
 
 - Check AI health and session status.
 - Inspect token usage and LLM spend.
-- Find cost-saving opportunities across model routing, caching, batching, and context cleanup.
+- Find cost-saving opportunities across provider setup, cache usage, batching, and context cleanup.
 - Monitor provider billing with BYOK keys stored in a local vault.
 - Audit slow-agent clutter such as stale worktrees, oversized logs, and bloated context.
-- Discover SkillFM skills for content, social media, e-commerce, SEO/GEO, and workflow automation as they become available.
+- Discover future SkillFM skills for content, social media, e-commerce, SEO/GEO, and workflow automation as they become available.
 
 This repository is the public distribution shell for SkillFM's MCP marketplace listing. The canonical local runtime is [`@skillfm/local`](https://www.npmjs.com/package/@skillfm/local).
 
@@ -78,10 +78,10 @@ npx -y @skillfm/mcp@latest start
 # Show AI health checkup from the CLI
 npx -y @skillfm/mcp@latest checkup
 
-# Detect supported agent harnesses
+# Detect supported local agent harnesses
 npx -y @skillfm/mcp@latest safe detect
 
-# Install local SkillFM guidance into supported local agents
+# Install local SkillFM guidance into supported local agents after user approval
 npx -y @skillfm/mcp@latest safe inject
 
 # Remove injected local guidance
@@ -103,8 +103,11 @@ SkillFM Beacon is for users who ask:
 
 - **Local sidecar**: The activation sidecar listens on `127.0.0.1`, not the public network.
 - **BYOK vault**: Provider API keys are stored locally by `@skillfm/local`; agents do not read key values back.
-- **No private core in this repo**: This repository contains distribution metadata and a thin launcher only. Core safety logic, hosted services, policy systems, and internal orchestration are not included.
+- **No private core in this repo**: This repository contains distribution metadata and a thin launcher only. Non-public platform implementation details are not included.
 - **User-controlled activation**: OAuth device-flow activation requires the user to approve the real device code in their own browser.
+- **Read-only cleanup first**: Cleanup audits are designed to report slow-agent clutter before any user-directed cleanup action.
+
+See [PRIVACY.md](./PRIVACY.md) and [SECURITY.md](./SECURITY.md) for the public repository boundary.
 
 ## Marketplace Keywords
 
@@ -127,12 +130,21 @@ Public:
 
 Private:
 
-- core safety engine internals
-- hosted service implementation
-- private policy logic
-- private prompts and routing strategy
-- customer data
+- non-public platform implementation
+- proprietary evaluation internals
+- private prompts or configuration
+- customer data or logs
 - provider credentials
+
+## Marketplace Readiness
+
+- `server.json.name` matches `package.json.mcpName`.
+- The npm package is a thin public launcher for `@skillfm/local`.
+- `publishConfig.access` is set to `public` for scoped npm publishing.
+- Public docs avoid guaranteed income, passive income, and automatic earning claims.
+- The repository contains no backend service code, customer logs, provider keys, or non-public automation logic.
+
+See [docs/MARKETPLACE-CHECKLIST.md](./docs/MARKETPLACE-CHECKLIST.md) before submitting to MCP registries or agent directories.
 
 ## License
 
