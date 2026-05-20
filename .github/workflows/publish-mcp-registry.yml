@@ -1,0 +1,46 @@
+name: Publish to MCP Registry
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  publish:
+    name: Publish SkillFM Beacon to MCP Registry
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Validate server metadata
+        run: |
+          node - <<'NODE'
+          const pkg = require("./package.json");
+          const srv = require("./server.json");
+          const checks = {
+            mcpName: pkg.mcpName === srv.name,
+            packageIdentifier: pkg.name === srv.packages?.[0]?.identifier,
+            version: pkg.version === srv.version && pkg.version === srv.packages?.[0]?.version,
+            publicAccess: pkg.publishConfig?.access === "public",
+            repoId: Boolean(srv.repository?.id),
+            serverDescriptionLength: srv.description.length <= 100,
+          };
+          console.log(JSON.stringify(checks, null, 2));
+          if (Object.values(checks).some((value) => value !== true)) {
+            process.exit(1);
+          }
+          NODE
+
+      - name: Install MCP Publisher
+        run: |
+          curl -L "https://github.com/modelcontextprotocol/registry/releases/download/v1.1.0/mcp-publisher_1.1.0_linux_amd64.tar.gz" | tar xz mcp-publisher
+          ./mcp-publisher --version
+
+      - name: Login with GitHub OIDC
+        run: ./mcp-publisher login github-oidc
+
+      - name: Publish to Official MCP Registry
+        run: ./mcp-publisher publish
