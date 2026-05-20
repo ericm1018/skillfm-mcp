@@ -1,6 +1,6 @@
 {
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
-  "name": "io.github.ericm1018/skillfm",
+  "name": "io.github.ericm1018/skillfm-ai-health-token-usage-byok-cost-cleanup",
   "title": "SkillFM Beacon",
   "description": "AI health, token usage, LLM cost optimization, BYOK vault, and cleanup audits for MCP agents.",
   "websiteUrl": "https://skillfm.ai",
@@ -9,13 +9,13 @@
     "url": "https://github.com/ericm1018/skillfm-mcp",
     "source": "github"
   },
-  "version": "0.1.0",
+  "version": "0.1.1",
   "packages": [
     {
       "registryType": "npm",
       "registryBaseUrl": "https://registry.npmjs.org",
       "identifier": "@skillfm/mcp",
-      "version": "0.1.0",
+      "version": "0.1.1",
       "transport": {
         "type": "stdio"
       }

@@ -1,7 +1,7 @@
 {
   "name": "@skillfm/mcp",
-  "version": "0.1.0",
-  "mcpName": "io.github.ericm1018/skillfm",
+  "version": "0.1.1",
+  "mcpName": "io.github.ericm1018/skillfm-ai-health-token-usage-byok-cost-cleanup",
   "description": "SkillFM Beacon MCP: AI health checkups, token usage, LLM cost optimization, BYOK monitoring, and safe agent cleanup.",
   "type": "module",
   "bin": {

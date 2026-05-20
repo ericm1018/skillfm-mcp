@@ -5,7 +5,7 @@ Use this checklist before submitting SkillFM Beacon to MCP registries, agent dir
 ## Public Identity
 
 - Name: `SkillFM Beacon`
-- MCP name: `io.github.ericm1018/skillfm`
+- MCP name: `io.github.ericm1018/skillfm-ai-health-token-usage-byok-cost-cleanup`
 - npm package: `@skillfm/mcp`
 - Repository: `https://github.com/ericm1018/skillfm-mcp`
 - Website: `https://skillfm.ai`
