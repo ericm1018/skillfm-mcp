@@ -1,0 +1,72 @@
+name: Publish npm package
+
+on:
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: Run npm publish in dry-run mode
+        required: true
+        default: false
+        type: boolean
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  publish:
+    name: Publish @skillfm/mcp
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          registry-url: "https://registry.npmjs.org"
+          package-manager-cache: false
+
+      - name: Show npm version
+        run: npm --version
+
+      - name: Validate package metadata
+        run: |
+          node - <<'NODE'
+          const pkg = require("./package.json");
+          const srv = require("./server.json");
+          const checks = {
+            mcpName: pkg.mcpName === srv.name,
+            packageIdentifier: pkg.name === srv.packages?.[0]?.identifier,
+            version: pkg.version === srv.version && pkg.version === srv.packages?.[0]?.version,
+            publicAccess: pkg.publishConfig?.access === "public",
+            repoId: Boolean(srv.repository?.id),
+            serverDescriptionLength: srv.description.length <= 100,
+          };
+          console.log(JSON.stringify(checks, null, 2));
+          if (Object.values(checks).some((value) => value !== true)) {
+            process.exit(1);
+          }
+          NODE
+
+      - name: Smoke test
+        run: npm run smoke
+
+      - name: Pack preview
+        run: npm pack --dry-run
+
+      - name: Publish dry run
+        if: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run }}
+        run: npm publish --dry-run --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Publish
+        if: ${{ github.event_name != 'workflow_dispatch' || !inputs.dry_run }}
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
