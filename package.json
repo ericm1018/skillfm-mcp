@@ -11,8 +11,12 @@
     "access": "public"
   },
   "files": [
+    "assets",
     "bin",
     "docs",
+    "skills",
+    "glama.json",
+    "llms-install.md",
     "README.md",
     "PRIVACY.md",
     "SECURITY.md",
