@@ -23,7 +23,7 @@ This package is a public distribution shell. It delegates execution to
 
 const child = spawn(
   process.platform === 'win32' ? 'npx.cmd' : 'npx',
-  ['-y', '@skillfm/local@latest', ...forwarded],
+  ['-y', '--package', '@skillfm/local@latest', 'skillfm-local', ...forwarded],
   {
     stdio: 'inherit',
     env: process.env,
